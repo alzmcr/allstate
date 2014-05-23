@@ -1,5 +1,6 @@
 old/
 data/*.csv
+*.xlsx
 
 #################
 ## Eclipse

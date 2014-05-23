@@ -68,13 +68,14 @@ class RandomForestsParallel(object):
                 
         del self.X,self.y,self.w
         # set the importances of the features
-        self.impf = self.calculate_impf(X.columns)
+        self.impf = self._calculate_impf(X.columns)
         
-    def predict(self,X):
+    def predict(self,X,single_process=True):
         # predict using all the random forest in self.rfs
-        # output: array with shap
+        # single_process is set by default, as multiprocess predict is not
+        # memory efficient and sometime time efficient (efficient smaller N)
         self.X = X
-        if self.N_proc > 1:
+        if (not single_process) & (self.N_proc > 1):
             pool = multiprocessing.Pool(self.N_proc)
             allpreds = np.array([p for p in pool.imap(self._parallel_predict,self.rfs)]).T
             pool.terminate()
@@ -84,5 +85,11 @@ class RandomForestsParallel(object):
         del self.X
         return allpreds
 
-    def calculate_impf(self, feature_names):
-        return pd.Series(reduce(operator.add,[rf.feature_importances_ for rf in self.rfs]) / self.N, feature_names)     
+    def _calculate_impf(self, feature_names):
+        return pd.Series(reduce(operator.add,[rf.feature_importances_ for rf in self.rfs]) / self.N, feature_names)
+
+    def __repr__(self):
+        return "N:%i N_proc:%i ntree:%i maxfea:%i leafsize:%i fitted:%s" % (    
+            self.N, self.N_proc, self.ntree,self.maxfea,
+            self.leafsize, 'Yes' if len(self.rfs) > 0 else 'No')
+    
