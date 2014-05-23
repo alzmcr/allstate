@@ -1,5 +1,13 @@
 # Allstate Purchase Prediction Challenge
 # Author: Alessandro Mariani <alzmcr@yahoo.it>
+# https://www.kaggle.com/c/allstate-purchase-prediction-challenge
+
+'''
+RandomForestParallel: is just a "fancy" class which will help
+    optimize memory usage while fitting several random forest
+    on the same machine. It implements fit() and predict() as
+    for the scikit-learn convention.
+'''
 
 from time import time
 from sklearn import ensemble
@@ -34,7 +42,7 @@ class RandomForestsParallel(object):
     def __init__(self,N,ntree,maxfea,leafsize,N_proc=None):
         self.N = N
         self.ntree = ntree; self.maxfea = maxfea; self.leafsize = leafsize
-        self.N_proc = N_proc if N_proc is not None else multiprocessing.cpu_count()-1
+        self.N_proc = N_proc if N_proc is not None else max(1,multiprocessing.cpu_count()-1)
 
         # fix pickling when using bound methods in classes
         pickle(MethodType, _pickle_method, _pickle_method)

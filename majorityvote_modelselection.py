@@ -1,11 +1,16 @@
 # Allstate Purchase Prediction Challenge
 # Author: Alessandro Mariani <alzmcr@yahoo.it>
+# https://www.kaggle.com/c/allstate-purchase-prediction-challenge
+
+'''
+This module is for train, cross validate and make the final prediction.
+'''
 
 import pandas as pd, numpy as np
 import matplotlib.pyplot as plt
 import operator
 
-from sklearn import feature_selection, linear_model, cross_validation, ensemble
+from sklearn import cross_validation, ensemble
 from utils import prepare_data, concat, expval, stateFix
 from parallel import RandomForestsParallel
 from time import time
@@ -30,7 +35,7 @@ if __name__ == '__main__':
     # N: number of models to build
     # NS: number of models to selected for majority vote
     # kfold: number of k-fold to perform, if not submitting
-    # N_proc: number of process to spawn, default CPUs - 1
+    # N_proc: number of process to spawn, default #CPU(s)-1
     # include_from_pt: minimum shopping_pt included in the data set
     # verbose_selection: print all details while selecting the model
     # tn: test set distrubution of shopping_pt (#10-11 merged)    

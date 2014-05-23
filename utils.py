@@ -1,5 +1,10 @@
 # Allstate Purchase Prediction Challenge
 # Author: Alessandro Mariani <alzmcr@yahoo.it>
+# https://www.kaggle.com/c/allstate-purchase-prediction-challenge
+
+'''
+This module cointains the data preparation and utilities
+'''
 
 from time import time
 from itertools import combinations
@@ -38,8 +43,6 @@ def concat(df, columns):
         [np.array(df[col].values, dtype=str) for col in columns]).T])
 
 # Breakfast Pirate Awesome State trick + some additions
-# dictionary "encoders" is not passed as part of the parameters, so need 
-# to be declared as global prior to use this method (too lazy)
 def stateFix(encoders,df,c=['C','D','G'],verbose=False):
     # GA
     iGA = df.state == encoders['state'].transform(['GA'])[0]
