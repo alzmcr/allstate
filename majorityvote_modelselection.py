@@ -74,7 +74,7 @@ if __name__ == '__main__':
             if submit:
                 # just a lame way to re-using the same code for fitting & selecting when submitting :)
                 itr = np.ones(y.shape,dtype=bool); icv = -itr
-                print "\nCREATING SUBMISSION!\n"
+                print "\nHEY! CREATING SUBMISSION!\n"
             else:
                 # redo expected value for the current training & cv set
                 for c in [x for x in X.columns if x[-4:] == '_exp']:

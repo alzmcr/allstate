@@ -54,9 +54,10 @@ class RandomForestsParallel(object):
     def _parallel_predict(self, rf):
         return rf.predict(self.X)
     
-    def fit(self,X,y,w):
+    def fit(self,X,y,w=None):
         # fit N random forest in parallel
-        self.X = X; self.y = y; self.w = w; self.rfs = []
+        self.rfs = []; self.X = X; self.y = y
+        self.w = np.ones(y.shape,dtype=bool) if w is None else w
         print "fitting %i RFs using %i processes..." % (self.N,self.N_proc),
 
         args = [ensemble.RandomForestClassifier(
@@ -77,6 +78,8 @@ class RandomForestsParallel(object):
         del self.X,self.y,self.w
         # set the importances of the features
         self.impf = self._calculate_impf(X.columns)
+
+        return self
         
     def predict(self,X,single_process=True):
         # predict using all the random forest in self.rfs
@@ -91,9 +94,11 @@ class RandomForestsParallel(object):
             allpreds = np.array([self._parallel_predict(rf) for rf in self.rfs]).T
             
         del self.X
+        
         return allpreds
 
     def _calculate_impf(self, feature_names):
+        # private method to calculate the average features importance
         return pd.Series(reduce(operator.add,[rf.feature_importances_ for rf in self.rfs]) / self.N, feature_names)
 
     def __repr__(self):
