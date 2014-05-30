@@ -1,18 +1,19 @@
-#### Allstate Purchase Prediction Challenge ####################
-#### 2nd place - Alessandro's code only ########################
+### Allstate Purchase Prediction Challenge
+#### 2nd place - Alessandro's code only
+====
 
-## [Requirements]
+### Requirements
 Python 2.7.5 with Scikit-Learn 0.14a1, Numpy 1.8, Pandas 0.12
 Windows 8, Intel i5-3230M @ 2.60Ghz, 16GB RAM
 Developed on a HP Envy 17 j100tx laptop
 
-## [How to generate the solution]
+### How to generate the solution
 Type "python majorityvote_modelselection.py" in Python shell or
 easily double click on Windows. What out on memory usage, even
 though "should" be configured not to exceed 8 GB with the
 default settings.
 
-## [Comments]
+### Comments
 Using the default setting, this will fit the model and creates 
 the submission which will score 0.53705 in the private L. This 
 is the setting which combined with Breakfast Pirate ABCEDF 
@@ -42,5 +43,5 @@ b. Exit the loop and make the prediction on the test set, do
    a majority vote using the selected models, fix the product
    accordingly with the state rule and create the submission file
 
-## [License]
+### License
 Please refer for LICENSE.txt file
