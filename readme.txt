@@ -9,7 +9,7 @@ Developed on a HP Envy 17 j100tx laptop
 ## [How to generate the solution]
 Type "python majorityvote_modelselection.py" in Python shell or
 easily double click on Windows. What out on memory usage, even
-though "should" be configured not to exceed 4-6 GB with the
+though "should" be configured not to exceed 8 GB with the
 default settings.
 
 ## [Comments]

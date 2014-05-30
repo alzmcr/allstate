@@ -65,16 +65,16 @@ def stateFix(encoders,df,c=['C','D','G'],verbose=False):
             nga1, nga2, nfl1, noh1, nnd1, nsd1)
 
 # Target variable expected value given a categorical feature
-def expval(df,col,y,tfilter,kn=15,noise=0.3):
+def expval(df,col,y,tfilter):
     tmp = pd.DataFrame(index=df.index)
-    p0 = df[tfilter][y].mean()                                              # train set mean
+    pb = df[tfilter][y].mean()                                              # train set mean
     tmp['cnt'] = df[col].map(df[tfilter][col].value_counts()).fillna(0)     # train set count
-    tmp['csm'] = df[col].map(df[tfilter].groupby(col)[y].sum()).fillna(p0)  # train set sum
+    tmp['csm'] = df[col].map(df[tfilter].groupby(col)[y].sum()).fillna(pb)  # train set sum
     tmp.ix[tfilter,'cnt'] -= 1                                              # reduce count for train set
     tmp.ix[tfilter,'csm'] -= df.ix[tfilter,y]                               # remove current value
-    tmp['exp'] = ((tmp.csm+ p0*kn) / (tmp.cnt+ kn)).fillna(p0)              # calculate mean including kn-extra 'average' samples 
+    tmp['exp'] = ((tmp.csm+ pb*15) / (tmp.cnt+ 15)).fillna(pb)              # calculate mean including kn-extra 'average' samples 
     np.random.seed(1)
-    tmp.ix[tfilter,'exp'] *= 1+noise*(np.random.rand(len(tmp[tfilter]))-.5) # add some random noise to the train set
+    tmp.ix[tfilter,'exp'] *= 1+.3*(np.random.rand(len(tmp[tfilter]))-.5) # add some random noise to the train set
     return tmp.exp
 
 def prepare_data(shuffle=True):
