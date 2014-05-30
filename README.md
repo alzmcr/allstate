@@ -1,21 +1,16 @@
-### Allstate Purchase Prediction Challenge
-#### 2nd place - Alessandro's code only
+## Allstate Purchase Prediction Challenge
 ====
 
+
 ### Requirements
-Python 2.7.5 with Scikit-Learn 0.14a1, Numpy 1.8, Pandas 0.12
-
-Windows 8, Intel i5-3230M @ 2.60Ghz, 16GB RAM
-
-Developed on a HP Envy 17 j100tx laptop
+Python 2.7.5 with Scikit-Learn 0.14a1, Numpy 1.8, Pandas 0.12<br>
+Windows 8, Intel i5-3230M @ 2.60Ghz, 16GB RAM<br>
+Developed on a HP Envy 17 j100tx laptop<br>
 
 ### How to generate the solution
 Type "python majorityvote_modelselection.py" in Python shell or
-
 easily double click on Windows. Watch out on memory usage, even
-
 though "should" be configured not to exceed 8 GB with the
-
 default settings.
 
 ### Comments
@@ -42,8 +37,8 @@ The script will perform the the following steps:
 6. Do a majority vote using the NS selected model(s) and print 
    the score on the cross validation set
 
-Then, if submit is set to False:
-a. Records the performance of the k-fold and loop
+Then, if submit is set to False:<br>
+a. Records the performance of the k-fold and loop<br>
 b. Exit the loop and make the prediction on the test set, do 
    a majority vote using the selected models, fix the product
    accordingly with the state rule and create the submission file
