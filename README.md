@@ -4,13 +4,18 @@
 
 ### Requirements
 Python 2.7.5 with Scikit-Learn 0.14a1, Numpy 1.8, Pandas 0.12
+
 Windows 8, Intel i5-3230M @ 2.60Ghz, 16GB RAM
+
 Developed on a HP Envy 17 j100tx laptop
 
 ### How to generate the solution
 Type "python majorityvote_modelselection.py" in Python shell or
-easily double click on Windows. What out on memory usage, even
+
+easily double click on Windows. Watch out on memory usage, even
+
 though "should" be configured not to exceed 8 GB with the
+
 default settings.
 
 ### Comments
