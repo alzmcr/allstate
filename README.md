@@ -1,4 +1,4 @@
-##Allstate Purchase Prediction Challenge
+## Allstate Purchase Prediction Challenge
 
 ### Requirements
 Python 2.7.5 with Scikit-Learn 0.14a1, Numpy 1.8, Pandas 0.12<br>
